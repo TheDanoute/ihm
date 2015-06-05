@@ -128,7 +128,14 @@ public class FicheEvtUI extends javax.swing.JPanel {
         if (event == null) { return false; }            
                   
         /** Projet : à compléter **/
+        intitule.setText(event.getIntitule());
         
+        jour = event.getDateJour();
+        moois = event.getDateMois();
+        annee = event.getDateAnnee();
+        liste.setSelectedItem(jour);
+        liste1.setSelectedItem(moois);
+        liste2.setSelectedItem(annee);
             
         return false;
     }
@@ -143,6 +150,8 @@ public class FicheEvtUI extends javax.swing.JPanel {
         if (event == null) { return false; }
         
         /** Projet : à compléter **/
+        event.setIntitule(intitule.getText());
+        event.setDate((Integer)liste2.getSelectedItem(),(Mois)liste1.getSelectedItem(), (Integer)liste.getSelectedItem());
         
         return true;
     }
