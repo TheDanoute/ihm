@@ -29,6 +29,8 @@ public class PlanningUI extends JPanel {
      */
     private Controleur       controleur;
     private FicheEvtUI       ficheEvt;
+    private JList            model;
+    private DefaultListModel arbre;
 
     /** 
      * Constructeur : initialise les composants de l'IHM pour les événements
@@ -53,6 +55,13 @@ public class PlanningUI extends JPanel {
      
         this.add(new javax.swing.JLabel("Evenements"));
         this.add(ficheEvt);
+       
+        // Arbre des evenements --> pas fini
+        arbre = new DefaultListModel();
+        model = new JList(arbre);
+        this.add(model);
+        
+        
     }
     
     /**

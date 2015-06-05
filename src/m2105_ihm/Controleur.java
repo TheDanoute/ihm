@@ -102,7 +102,7 @@ public class Controleur {
        /** Projet **/
         Evenement event = new Evenement();
         nf.addEvenement(event);
-        carnetUI.
+        planningUI.ajouterEvt(event);
        
     }
 
@@ -112,6 +112,9 @@ public class Controleur {
     public void supprimerEvenement() {
        
        /** Projet **/
+        Evenement e = planningUI.getSelectedEvt();
+        nf.removeEvenement(e);
+        planningUI.retirerEvt(e);
        
     }
     
@@ -121,7 +124,9 @@ public class Controleur {
     public void ajouterParticipantEvenement() {
     
        /** Projet **/
-           
+        Evenement[] e = nf.getEvenements();
+        BoiteDialogUI.afficherChoixEventContact(fenetre, "Selection de l'evenement", e);
+        //Pas fini   
     }
 
     /**

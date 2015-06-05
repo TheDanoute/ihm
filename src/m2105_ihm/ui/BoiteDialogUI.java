@@ -9,6 +9,7 @@ package m2105_ihm.ui;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import m2105_ihm.nf.Contact;
+import m2105_ihm.nf.Evenement;
 import m2105_ihm.nf.GroupeContacts;
 
 /**
@@ -76,6 +77,18 @@ public class BoiteDialogUI {
             
         /** TP5 : à compléter **/
             res = (GroupeContacts)selectedValue;
+        return res;
+    }  
+    
+    public static Evenement afficherChoixEventContact(JFrame fenetre, String titre,Evenement[] e) {
+        Evenement res = null;
+        if (titre == null) { titre = ""; }
+            //String[] choix = new String[]{"Ajouter", "Annuler"};
+            Object selectedValue = JOptionPane.showInputDialog(fenetre, res, "Ajout d'un contact dans un evenement",
+                    JOptionPane.DEFAULT_OPTION, null, e , e[0]);
+            
+        /** TP5 : à compléter **/
+            res = (Evenement)selectedValue;
         return res;
     }    
 }
