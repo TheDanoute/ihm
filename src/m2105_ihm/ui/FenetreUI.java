@@ -43,7 +43,7 @@ public class FenetreUI extends JFrame {
         
         menuFichier = new JMenuItem[2];
         menuContacts = new JMenuItem[8];
-        menuEvent = new JMenuItem[2];
+        menuEvent = new JMenuItem[3];
                 
         initMenus();
         initUIComponents();
@@ -195,6 +195,15 @@ public class FenetreUI extends JFrame {
              }
          });
         event.add(menuEvent[1]);
+        menuEvent[2] = new JMenuItem("Ajouter un participant a l'evenement");
+        menuEvent[2].addActionListener(new ActionListener() {
+
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 controleur.ajouterParticipantEvenement();
+             }
+         });
+        event.add(menuEvent[2]);
         
         return event;
     }    
