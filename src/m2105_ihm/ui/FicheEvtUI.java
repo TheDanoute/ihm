@@ -4,6 +4,8 @@
 package m2105_ihm.ui;
 
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -93,11 +95,34 @@ public class FicheEvtUI extends javax.swing.JPanel {
         
         /** Projet : à compléter **/
         //Champ intitule
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(5,2));
+        panel.add(new JLabel(""));
+        panel.add(new JLabel(""));
+        panel.add(new JLabel("Intitulé :"));
         intitule = new JTextField(30);
-        this.add(intitule);
+        panel.add(intitule);
         
         //Champ calendrier
-        this.add(new JLabel("ANNEE :"));
+        panel.add(new JLabel("Date :"));
+        JPanel panelDate = new JPanel();
+        panelDate.setLayout(new GridLayout(1,3));
+        //panelDate.add(new JLabel("JOUR :"));
+     
+        for (int i = 0;i<31;i++) {
+            jours[i]=i+1;
+        }
+      
+        liste2 = new JComboBox(jours);  
+        panelDate.add(liste2);
+         
+        //panelDate.add(new JLabel("MOIS :"));
+
+
+        liste1 = new JComboBox(Mois.values()); 
+        panelDate.add(liste1);
+         
+        //panelDate.add(new JLabel("ANNEE :"));
         //
         int j = 2000;
         for (int i = 0;i<50;i++) {
@@ -106,41 +131,44 @@ public class FicheEvtUI extends javax.swing.JPanel {
         j=j+1;
         }
 
-         liste = new JComboBox(items);
-         this.add(liste);
-         
-          this.add(new JLabel("MOIS :"));
-
-
-         liste1 = new JComboBox(Mois.values()); 
-         this.add(liste1);
-         
-         this.add(new JLabel("JOUR :"));
-     
-        for (int i = 0;i<31;i++) {
-            jours[i]=i+1;
-        }
-      
-         liste2 = new JComboBox(jours);  
-         this.add(liste2);
+        liste = new JComboBox(items);
+        panelDate.add(liste);
         
+        panel.add(panelDate);
+         
+          
+
         //Liste de participants
-        this.add(new JLabel("Liste de participants"));
+       
             
         String[] colonnes = {"Nom","Prenom"};
             model.setColumnIdentifiers(colonnes);
             tableContact=new JTable(model);
-        this.add(tableContact.getTableHeader());
-        this.add(tableContact);
+        JPanel panelPar = new JPanel();
+        panelPar.setLayout(new GridLayout(3,1));
+        panelPar.add(new JLabel("Liste de participants"));
+        panelPar.add(tableContact.getTableHeader());
+        panelPar.add(tableContact);
+        panel.add(panelPar);
+        gestParti = new JButton("Gestion des participants");
+        panel.add(gestParti);
          
          
          //Button Annuler/Valider + Gerer participants
+        JPanel panelBouton = new JPanel();
+        panelBouton.setLayout(new BorderLayout());
+        
             valider = new JButton("Valider");
-            this.add(valider);
+            panelBouton.add(valider,BorderLayout.WEST);
             annuler = new JButton("Annuler");
-            this.add(annuler);
-            gestParti = new JButton("Gestion des participants");
-            this.add(gestParti);
+            panelBouton.add(annuler,BorderLayout.EAST);
+            
+        JPanel mainPanel = new JPanel();   
+        mainPanel.setLayout(new BorderLayout());
+        
+        mainPanel.add(panel,BorderLayout.CENTER);
+        mainPanel.add(panelBouton,BorderLayout.SOUTH);
+        this.add(mainPanel);
   
     }
 

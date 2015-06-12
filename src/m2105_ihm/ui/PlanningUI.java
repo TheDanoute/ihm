@@ -61,10 +61,11 @@ public class PlanningUI extends JPanel {
         ficheEvt = new FicheEvtUI(this);
         ficheEvt.add(listEvents);
         panel.setLayout(new BorderLayout());
-        this.add(panel);
         
         panel.add(ficheEvt,BorderLayout.CENTER);
         panel.add(listEvents,BorderLayout.WEST);
+        
+        this.add(panel);
         
         listEvents.addListSelectionListener(new ListSelectionListener(){
             

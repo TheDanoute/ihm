@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -90,20 +91,46 @@ public class GestionParticipant extends JFrame {
         add = new JButton("->");
         del = new JButton("<-");
         
+        panelMain = new JPanel();
+        panelMain.setLayout(new BorderLayout());
+        
         sousPanel = new JPanel();
-        sousPanel.setLayout(new BorderLayout());
-        sousPanel.add(add,BorderLayout.NORTH);
-        sousPanel.add(del,BorderLayout.SOUTH);
+        sousPanel.setLayout(new GridLayout(5,3));
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(add);
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(del);
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(new JLabel(""));
+        sousPanel.add(new JLabel(""));
         
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.add(sousPanel,BorderLayout.CENTER);
         
-        panelMain = new JPanel();
-        panelMain.setLayout(new BorderLayout());
+        JPanel listLeft = new JPanel();
+        listLeft.setLayout(new BorderLayout());
+        listLeft.add(new JLabel("Liste des Contacts"),BorderLayout.NORTH);
+        listLeft.add(list1,BorderLayout.CENTER);
+        panelMain.add(listLeft,BorderLayout.WEST);
+        
+        JPanel listRight = new JPanel();
+        listRight.setLayout(new BorderLayout());
+        listRight.add(new JLabel("Dans cet evenement"),BorderLayout.NORTH);
+        listRight.add(list2,BorderLayout.CENTER);
+        panelMain.add(listRight,BorderLayout.EAST);
+        
+        
         panelMain.add(panel,BorderLayout.CENTER);
-        panelMain.add(list1,BorderLayout.WEST);
-        panelMain.add(list2,BorderLayout.EAST);
+        
         JPanel bouton = new JPanel();
         bouton.setLayout(new BorderLayout());
         bouton.add(valider,BorderLayout.WEST);
