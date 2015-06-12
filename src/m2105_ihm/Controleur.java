@@ -3,6 +3,7 @@
  */
 package m2105_ihm;
 
+import java.util.ArrayList;
 import m2105_ihm.nf.Contact;
 import m2105_ihm.nf.Evenement;
 import m2105_ihm.nf.GroupeContacts;
@@ -43,6 +44,10 @@ public class Controleur {
     /**
      * Action créer un nouveau contact
      */
+    public ArrayList<Contact> getContactsList(){
+        return nf.getContactList();
+    }
+    
     public void creerContact() {
         
         /** TP5 : à compléter **/

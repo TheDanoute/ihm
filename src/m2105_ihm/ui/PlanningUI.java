@@ -80,6 +80,7 @@ public class PlanningUI extends JPanel {
     public void afficherFenetreParti(){
         gp = new GestionParticipant(controleur,this.getSelectedEvt());
         gp.afficher();
+        //gp.setValues();
     }
     
     /**

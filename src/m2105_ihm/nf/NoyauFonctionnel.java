@@ -51,6 +51,9 @@ public class NoyauFonctionnel {
      * Retourne la liste des contacts
      * @return 
      */
+    public ArrayList<Contact> getContactList(){
+        return contacts;
+    }
     public Contact [] getContacts() {
         return contacts.toArray(new Contact[0]);
     }

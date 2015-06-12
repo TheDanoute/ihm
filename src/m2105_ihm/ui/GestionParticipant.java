@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -32,11 +33,14 @@ public class GestionParticipant extends JFrame {
     private FenetreUI  fenetre;
     private JList      list1;
     private JList      list2;
+    private JList      listTemp;
     private JButton    valider;
     private JButton    annuler;
     private JButton    add;
     private JButton    del;
     private Evenement evenement;
+    private DefaultListModel model1;
+    private DefaultListModel model2;
     
     private ArrayList<Contact> listContact;
     private ArrayList<Contact> participants;
@@ -46,33 +50,43 @@ public class GestionParticipant extends JFrame {
         super("Gestion de participant");
         this.controleur =c;
         evenement = e;
+        list1 = new JList();
+        list2 = new JList();
+        listContact = new ArrayList<Contact>();
+        participants = new ArrayList<Contact>();
+        model1 = new DefaultListModel();
+        model2 = new DefaultListModel();
+        this.setValues();
+        initComponent();
         initUIComponents();
         
     }
-    public GestionParticipant(Controleur c){
-        super("Gestion de participant");
-        this.controleur =c;
-        initUIComponents();
-        
+    public void initComponent(){
+        for(Contact c : listContact){
+            model1.addElement(c);
+        }
+        list1.setModel(model1);
+        for(Contact c : participants){
+            model2.addElement(c);
+        }
+        list2.setModel(model2);
     }
-    
     public void afficher() {
         setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         setSize(500, 300);
         setVisible(true);                        
     }
     private void initUIComponents() {
-        list2 = new JList();
         this.add(list1);
         this.add(list2);
         valider = new JButton("Valider");
         annuler = new JButton("Annuler");
         add = new JButton("->");
         del = new JButton("<-");
-        this.add(valider);
-        this.add(annuler);
-        this.add(add);
-        this.add(del);
+        //this.add(valider);
+        //this.add(annuler);
+       // this.add(add);
+        //this.add(del);
         
         
     }
@@ -98,7 +112,7 @@ public class GestionParticipant extends JFrame {
         for (Contact c : evenement.getParticipants()) {
             participants.add(c);
         }
-        listContact = controleur.
+        listContact = controleur.getContactsList();
         for (Contact c : participants) {
             try {
                 listContact.remove(c);
