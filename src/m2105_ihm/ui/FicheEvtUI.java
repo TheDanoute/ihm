@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -40,7 +41,7 @@ public class FicheEvtUI extends javax.swing.JPanel {
     private JButton             gestParti;
     private DefaultTableModel   model = new DefaultTableModel();
     private JTable              tableContact;
-    
+    private JPanel              panel;
     
     
     

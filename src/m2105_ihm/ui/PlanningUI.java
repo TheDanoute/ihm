@@ -32,6 +32,7 @@ public class PlanningUI extends JPanel {
     private JList            listEvents;
     private DefaultListModel model;
     private GestionParticipant gp;
+    private JPanel           panel;
 
     /** 
      * Constructeur : initialise les composants de l'IHM pour les événements
@@ -56,14 +57,14 @@ public class PlanningUI extends JPanel {
         listEvents = new JList(model);
         listEvents.setBorder(BorderFactory.createTitledBorder("Evenements"));
         
-        JPanel events = new JPanel();
+        panel = new JPanel();
         ficheEvt = new FicheEvtUI(this);
         ficheEvt.add(listEvents);
-        events.setLayout(new BorderLayout());
-        this.add(events);
+        panel.setLayout(new BorderLayout());
+        this.add(panel);
         
-        events.add(ficheEvt,BorderLayout.CENTER);
-        events.add(listEvents,BorderLayout.WEST);
+        panel.add(ficheEvt,BorderLayout.CENTER);
+        panel.add(listEvents,BorderLayout.WEST);
         
         listEvents.addListSelectionListener(new ListSelectionListener(){
             

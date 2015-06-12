@@ -7,6 +7,8 @@
 package m2105_ihm.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -41,6 +44,9 @@ public class GestionParticipant extends JFrame {
     private Evenement evenement;
     private DefaultListModel model1;
     private DefaultListModel model2;
+    private JPanel panelMain;
+    private JPanel panel;
+    private JPanel sousPanel;
     
     private ArrayList<Contact> listContact;
     private ArrayList<Contact> participants;
@@ -52,6 +58,8 @@ public class GestionParticipant extends JFrame {
         evenement = e;
         list1 = new JList();
         list2 = new JList();
+        list1.setSize(200, 300);
+        list2.setSize(200, 300);
         listContact = new ArrayList<Contact>();
         participants = new ArrayList<Contact>();
         model1 = new DefaultListModel();
@@ -77,16 +85,31 @@ public class GestionParticipant extends JFrame {
         setVisible(true);                        
     }
     private void initUIComponents() {
-        this.add(list1);
-        this.add(list2);
         valider = new JButton("Valider");
         annuler = new JButton("Annuler");
         add = new JButton("->");
         del = new JButton("<-");
-        //this.add(valider);
-        //this.add(annuler);
-       // this.add(add);
-        //this.add(del);
+        
+        sousPanel = new JPanel();
+        sousPanel.setLayout(new BorderLayout());
+        sousPanel.add(add,BorderLayout.NORTH);
+        sousPanel.add(del,BorderLayout.SOUTH);
+        
+        panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.add(sousPanel,BorderLayout.CENTER);
+        
+        panelMain = new JPanel();
+        panelMain.setLayout(new BorderLayout());
+        panelMain.add(panel,BorderLayout.CENTER);
+        panelMain.add(list1,BorderLayout.WEST);
+        panelMain.add(list2,BorderLayout.EAST);
+        JPanel bouton = new JPanel();
+        bouton.setLayout(new BorderLayout());
+        bouton.add(valider,BorderLayout.WEST);
+        bouton.add(annuler,BorderLayout.EAST);
+        panelMain.add(bouton,BorderLayout.SOUTH);
+        this.add(panelMain);
         
         
     }
