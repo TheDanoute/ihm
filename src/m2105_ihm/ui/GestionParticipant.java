@@ -88,8 +88,8 @@ public class GestionParticipant extends JFrame {
     private void initUIComponents() {
         valider = new JButton("Valider");
         annuler = new JButton("Annuler");
-        add = new JButton("->");
-        del = new JButton("<-");
+        add = new JButton(">>");
+        del = new JButton("<<");
         
         panelMain = new JPanel();
         panelMain.setLayout(new BorderLayout());

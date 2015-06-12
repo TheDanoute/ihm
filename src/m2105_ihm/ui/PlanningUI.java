@@ -29,7 +29,7 @@ public class PlanningUI extends JPanel {
      */
     private Controleur       controleur;
     private FicheEvtUI       ficheEvt;
-    private JList            listEvents;
+    private JList            listEvts;
     private DefaultListModel model;
     private GestionParticipant gp;
     private JPanel           panel;
@@ -54,20 +54,21 @@ public class PlanningUI extends JPanel {
          * Fiche événement
          */        
         model = new DefaultListModel();
-        listEvents = new JList(model);
-        listEvents.setBorder(BorderFactory.createTitledBorder("Evenements"));
+        listEvts = new JList(model);
+        listEvts.setBorder(BorderFactory.createTitledBorder("Evenements :"));
+        
+        
+        ficheEvt = new FicheEvtUI(this);
+        ficheEvt.add(listEvts);
         
         panel = new JPanel();
-        ficheEvt = new FicheEvtUI(this);
-        ficheEvt.add(listEvents);
         panel.setLayout(new BorderLayout());
-        
         panel.add(ficheEvt,BorderLayout.CENTER);
-        panel.add(listEvents,BorderLayout.WEST);
+        panel.add(listEvts,BorderLayout.WEST);
         
         this.add(panel);
         
-        listEvents.addListSelectionListener(new ListSelectionListener(){
+        listEvts.addListSelectionListener(new ListSelectionListener(){
             
             @Override
             public void valueChanged(ListSelectionEvent lse) {
@@ -96,7 +97,7 @@ public class PlanningUI extends JPanel {
         /** Projet à completer **/
             model.add(0, evt);
             ficheEvt.setVisible(true);
-            listEvents.setSelectedIndex(0);
+            listEvts.setSelectedIndex(0);
         return true;
             
 
@@ -121,7 +122,7 @@ public class PlanningUI extends JPanel {
 
         if (modified) {
             ficheEvt.getValues(event);
-            listEvents.updateUI();
+            listEvts.updateUI();
         } else {
             ficheEvt.setValues(event);
         } 
@@ -132,7 +133,7 @@ public class PlanningUI extends JPanel {
     public Evenement getSelectedEvt() {    
         
         /** Projet à completer **/
-        return (Evenement) listEvents.getSelectedValue();
+        return (Evenement) listEvts.getSelectedValue();
        
     }
 }
