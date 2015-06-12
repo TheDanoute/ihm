@@ -4,6 +4,8 @@
 package m2105_ihm.ui;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -40,6 +42,8 @@ public class FicheEvtUI extends javax.swing.JPanel {
     private JTable              tableContact;
     
     
+    
+    
     /**
      * Creates new form CarnetUI
      */
@@ -58,7 +62,27 @@ public class FicheEvtUI extends javax.swing.JPanel {
     private void initListeners() {
         
         /** Projet : à compléter **/
-        
+        valider.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                planning.setEventModified(true);
+            }
+        });
+        annuler.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                planning.setEventModified(false);
+            }
+        });
+        gestParti.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                planning.afficherFenetreParti();
+            }
+        });
     }
     
     /**

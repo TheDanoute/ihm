@@ -29,8 +29,9 @@ public class PlanningUI extends JPanel {
      */
     private Controleur       controleur;
     private FicheEvtUI       ficheEvt;
-    private JList            model;
-    private DefaultListModel arbre;
+    private JList            listEvents;
+    private DefaultListModel model;
+    private GestionParticipant gp;
 
     /** 
      * Constructeur : initialise les composants de l'IHM pour les événements
@@ -51,17 +52,34 @@ public class PlanningUI extends JPanel {
         /*
          * Fiche événement
          */        
+        model = new DefaultListModel();
+        listEvents = new JList(model);
+        listEvents.setBorder(BorderFactory.createTitledBorder("Evenements"));
+        
+        JPanel events = new JPanel();
         ficheEvt = new FicheEvtUI(this);
-     
-        this.add(new javax.swing.JLabel("Evenements"));
-        this.add(ficheEvt);
-       
-        // Arbre des evenements --> pas fini
-        arbre = new DefaultListModel();
-        model = new JList(arbre);
-        this.add(model);
+        ficheEvt.add(listEvents);
+        events.setLayout(new BorderLayout());
+        this.add(events);
         
+        events.add(ficheEvt,BorderLayout.CENTER);
+        events.add(listEvents,BorderLayout.WEST);
         
+        listEvents.addListSelectionListener(new ListSelectionListener(){
+            
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                if (!lse.getValueIsAdjusting()){
+                    controleur.setEvtSelected(true);
+                    ficheEvt.setValues(getSelectedEvt());
+                }
+        }
+        });
+        
+    }
+    public void afficherFenetreParti(){
+        gp = new GestionParticipant(controleur,this.getSelectedEvt());
+        gp.afficher();
     }
     
     /**
@@ -73,9 +91,12 @@ public class PlanningUI extends JPanel {
         if (evt == null) { return false; }
         
         /** Projet à completer **/
-            
-            
+            model.add(0, evt);
+            ficheEvt.setVisible(true);
+            listEvents.setSelectedIndex(0);
         return true;
+            
+
     }
     
     /**
@@ -86,17 +107,29 @@ public class PlanningUI extends JPanel {
         if (evt == null) { return false; }
         
         /** Projet à completer **/
-            
+            model.removeElement(evt);
+            ficheEvt.setVisible(false);
+        
         return false;
     }
     
+    public void setEventModified(boolean modified) {
+        Evenement event = getSelectedEvt();
+
+        if (modified) {
+            ficheEvt.getValues(event);
+            listEvents.updateUI();
+        } else {
+            ficheEvt.setValues(event);
+        } 
+    }
     /*
      * Retourne l'événement sélectionné
      */
     public Evenement getSelectedEvt() {    
         
         /** Projet à completer **/
-
-        return null;
+        return (Evenement) listEvents.getSelectedValue();
+       
     }
 }

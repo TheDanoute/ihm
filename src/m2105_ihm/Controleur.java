@@ -4,14 +4,14 @@
 package m2105_ihm;
 
 import m2105_ihm.nf.Contact;
+import m2105_ihm.nf.Evenement;
 import m2105_ihm.nf.GroupeContacts;
 import m2105_ihm.nf.NoyauFonctionnel;
-import m2105_ihm.nf.Evenement;
-
+import m2105_ihm.ui.BoiteDialogUI;
 import m2105_ihm.ui.CarnetUI;
 import m2105_ihm.ui.FenetreUI;
+import m2105_ihm.ui.GestionParticipant;
 import m2105_ihm.ui.PlanningUI;
-import m2105_ihm.ui.BoiteDialogUI;
 
 /**
  *
@@ -30,6 +30,7 @@ public class Controleur {
     private CarnetUI carnetUI;
     private FenetreUI fenetre;
     private PlanningUI planningUI;
+    
 
     /**
      * Constructeur de la fenêtre principale
@@ -124,9 +125,7 @@ public class Controleur {
     public void ajouterParticipantEvenement() {
     
        /** Projet **/
-        Evenement[] e = nf.getEvenements();
-        BoiteDialogUI.afficherChoixEventContact(fenetre, "Selection de l'evenement", e);
-        //Pas fini   
+         
     }
 
     /**
